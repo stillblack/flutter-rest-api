@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
+      postList.clear();
       for (Map i in data) {
         postList.add(PostModel.fromJson(i as Map<String, dynamic>));
       }
@@ -31,7 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Api World')),
+        title: Center(
+          child: Text('Api World', style: TextStyle(color: Colors.white)),
+        ),
         backgroundColor: Colors.blue,
       ),
       body: Column(
