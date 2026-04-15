@@ -38,7 +38,7 @@ class _ExampleTwoState extends State<ExampleTwo> {
           Expanded(
             child: FutureBuilder(
               future: getPhotos(),
-              builder: (context, snapshot) {
+              builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     return ListTile(
@@ -48,7 +48,9 @@ class _ExampleTwoState extends State<ExampleTwo> {
                         ),
                       ),
                       title: Text(snapshot.data![index].id.toString()),
-                      subtitle: Text(snapshot.data![index].title.toString()),
+                      subtitle: Text(
+                        'Notes id:' + snapshot.data![index].title.toString(),
+                      ),
                     );
                   },
                 );
