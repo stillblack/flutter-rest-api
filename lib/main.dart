@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Api World',
       theme: ThemeData(),
-      home: HomeScreen(),
+      home: HomeScreen() ,
     );
   }
 }
