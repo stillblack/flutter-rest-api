@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Api World',
-      theme: ThemeData(),
-      home: HomeScreen() ,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      // home: const ,
     );
   }
 }
