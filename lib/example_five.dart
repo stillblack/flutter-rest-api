@@ -82,9 +82,9 @@ class _LastExampleState extends State<LastExample> {
                               width: MediaQuery.of(context).size.width * .1,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
+                                itemCount:
+                                    snapshot.data!.data[index].images.length,
                                 itemBuilder: (context, position) {
-                                  itemCount:
-                                  snapshot.data!.data[index].images.length;
                                   return Padding(
                                     padding: const EdgeInsets.only(right: 10),
                                     child: Container(
