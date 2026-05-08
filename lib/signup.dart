@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -14,25 +15,32 @@ class _SignupState extends State<Signup> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void Login(String email, String password) {
-    try{
-      Response response = await post(Uri.parse('url'),body:{'email':email , 'password':password});
-      if(response.statusCode == 200){
+  void Login(String email, password) async {
+    try {
+      Response response = await post(
+        Uri.parse('https://reqres.in/api/login'),
+        body: {'email': email, 'password': password},
+      );
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(data['id']);
         print('account created successfully');
-      }else{
-        print('failed');
+      } else {
+        print('failed to create account');
       }
-    }
-    catch(e){
+    } catch (e) {
       print(e.toString());
-
     }
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text('Sign Up')),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Sign Up'),
+        backgroundColor: Colors.lightBlue,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -59,9 +67,12 @@ class _SignupState extends State<Signup> {
               },
               style: TextButton.styleFrom(
                 minimumSize: Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 backgroundColor: Colors.green,
               ),
-              child: Text('Sign Up'),
+              child: Text('Login', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
