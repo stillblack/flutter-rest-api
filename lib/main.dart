@@ -1,5 +1,6 @@
-import 'package:api_world/example_five.dart';
-import 'package:api_world/signup.dart';
+// import 'package:api_world/example_five.dart';
+// import 'package:api_world/signup.dart';
+import 'package:api_world/upload_image.dart';
 // import 'package:api_world/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Api World',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const Signup(),
+      home: const UploadImage(),
     );
   }
 }
