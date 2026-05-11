@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Api World',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const UploadImage(),
+      home: const UploadImageScreenState(),
     );
   }
 }
