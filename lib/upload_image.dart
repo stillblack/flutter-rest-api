@@ -41,6 +41,21 @@ class _UploadImageScreenStateState extends State<UploadImageScreenState> {
     var request = new http.MultipartRequest('POST ', uri);
     request.fields['title'] = 'Static title';
     var multiport = new http.MultipartFile('image', stream, length);
+
+    request.files.add(multiport);
+
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      print('Image Uploaded');
+      setState(() {
+        showSpinner = false;
+      });
+    } else {
+      print('Failed');
+      setState(() {
+        showSpinner = false;
+      });
+    }
   }
 
   @override
@@ -57,17 +72,37 @@ class _UploadImageScreenStateState extends State<UploadImageScreenState> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              child: image == null
-                  ? Center(child: Text('Pick Image'))
-                  : Center(
-                      child: Image.file(
-                        File(image!.path).absolute,
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () {
+                getImage();
+              },
+              child: Container(
+                child: image == null
+                    ? Center(child: Text('Pick Image'))
+                    : Center(
+                        child: Image.file(
+                          File(image!.path).absolute,
+                          height: 100,
+                          width: 100,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
+              ),
+            ),
+            SizedBox(height: 120),
+            GestureDetector(
+              onTap: () {
+                uploadImage();
+              },
+              child: Container(
+                // decoration: BoxDecoration(
+                //   borderRadius: BorderRadius.circular(10),
+                // ),
+                height: 50,
+                width: 200,
+                color: Colors.green,
+                child: Center(child: Text('Upload')),
+              ),
             ),
           ],
         ),
